@@ -183,7 +183,7 @@ class scrape_ebc
     private $href;
     private $title;
     private $img;
-    const EBC = "http://www.ebc.et/";
+    const EBC = "https://www.ebc.et/";
 
     function __construct()
     {
@@ -379,8 +379,8 @@ function run_scrap_voa()
         $date = new DateTime();
 
         for ($i = 0; $i < $el_size; $i++) {
-            $href = $list['data'][0][$i];
-            $image = $s->get_url() . $list['data'][1][$i];
+            $href = $s->get_url() . $list['data'][0][$i];
+            $image = $list['data'][1][$i];
             $title = $list['data'][2][$i];
             $today = $date->format('Y-m-d h:i:s');
             $logolink = $s->get_url() . $s->get_news_posted_logo()[0];
@@ -409,11 +409,11 @@ function run_scrap_ebc()
         $date = new DateTime();
 
         for ($i = 0; $i < $el_size; $i++) {
-            $href = $list['data'][0][$i];
+            $href = $s->get_url() . $list['data'][0][$i];
             $image = $s->get_url() . $list['data'][1][$i];
             $title = $list['data'][2][$i];
             $today = $date->format('Y-m-d h:i:s');
-            $logolink = $s->get_url() . $s->get_news_posted_logo()[0];
+            $logolink = $s->get_news_posted_logo()[0];
 
             // print($url . $title . $href . $image . $logolink . $today . "<br>");
             if (!$dbop->search_news($title)) {
